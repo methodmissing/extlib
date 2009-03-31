@@ -1,6 +1,6 @@
 class Object
   
-  CALLSITE_SAMPLE = 1..5
+  CALLSITE_SAMPLE = 1..3
   
   # Extracts the singleton class, so that metaprogramming can be done on it.
   #
@@ -184,7 +184,7 @@ class Object
   # ( ["/opt/local/lib/ruby/1.8/irb/workspace.rb:52:in `irb_binding'",
   #    "/opt/local/lib/ruby/1.8/irb/workspace.rb:52"] << "custom or unique item" ).hash
   def callsite( *signature ) 
-    ( caller[CALLSITE_SAMPLE] << signature ).hash
+    ( caller[CALLSITE_SAMPLE].concat( signature ) ).hash
   end
   
 end
