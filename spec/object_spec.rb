@@ -111,4 +111,21 @@ describe Object do
       5.in?(@set).should be(true)
     end
   end
+  
+  describe "#callsite" do
+    it 'returns a numeric hash code' do
+      callsite.class.should == Fixnum
+    end
+    
+    it 'should yield the same callsite id when invoked multiple times on the same line' do
+      first, second = callsite, callsite
+      first.should == second
+    end
+    
+    it 'should not yield the same callsite ids for multiple invocations on the same line, with signature differentiation' do
+      first, second = callsite, callsite( :unique, 'signature' )
+      first.should_not == second
+    end
+        
+  end
 end

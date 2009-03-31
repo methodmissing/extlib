@@ -1,4 +1,7 @@
 class Object
+  
+  CALLSITE_SAMPLE = 1..5
+  
   # Extracts the singleton class, so that metaprogramming can be done on it.
   #
   # @return <Class> The meta class.
@@ -172,4 +175,16 @@ class Object
       instance_variables.include?(variable.to_s)
     end
   end
+  
+  # Generates a unique callsite identifier based on the current execution stack.
+  # Any given arguments can specialize multiple invocations on the same line
+  # with a unique signature as the granularity of Kernel#caller is limited to a
+  # single line of code.
+  #
+  # ( ["/opt/local/lib/ruby/1.8/irb/workspace.rb:52:in `irb_binding'",
+  #    "/opt/local/lib/ruby/1.8/irb/workspace.rb:52"] << "custom or unique item" ).hash
+  def callsite( *signature ) 
+    ( caller[CALLSITE_SAMPLE] << signature ).hash
+  end
+  
 end
