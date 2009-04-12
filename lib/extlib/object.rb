@@ -1,6 +1,6 @@
 class Object
   
-  CALLSITE_SAMPLE = 1..3
+  CALLSITE_SAMPLE = 1..10
   
   # Extracts the singleton class, so that metaprogramming can be done on it.
   #

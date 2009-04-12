@@ -4,14 +4,14 @@ require "rbench"
 
 class Object
   
-  CALLSITE_SAMPLE = 1..3
+  CALLSITE_SAMPLE = 1..10
   
   def callsite_with_constant_append( *signature ) 
     ( caller[CALLSITE_SAMPLE] << signature ).hash
   end
   
   def callsite_without_constant_append( *signature ) 
-    ( caller[1..3] << signature ).hash
+    ( caller[1..10] << signature ).hash
   end  
   
   def callsite_with_constant_concat( *signature ) 
@@ -19,7 +19,7 @@ class Object
   end  
 
   def callsite_without_constant_concat( *signature ) 
-    ( caller[1..3].concat( signature ) ).hash
+    ( caller[1..10].concat( signature ) ).hash
   end  
   
 end
